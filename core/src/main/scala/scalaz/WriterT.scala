@@ -324,7 +324,7 @@ private trait WriterTHoist[W] extends Hoist[({type λ[α[_], β] = WriterT[α, W
   }
 }
 
-private trait WriterTMonadListen[F[_], W] extends MonadListen[({type λ[α, β] = WriterT[F, α, β]})#λ, W] with WriterTMonad[F, W] {
+private trait WriterTMonadListen[F[_], W] extends MonadListen[({type λ[α, β] = WriterT[F, α, β]})#λ, W] with MonadTell[({type λ[α, β] = WriterT[F, α, β]})#λ, W] with WriterTMonad[F, W] {
   implicit def F: Monad[F]
   implicit def W: Monoid[W]
 
